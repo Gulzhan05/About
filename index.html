@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gulzhan — Portfolio</title>
+  <style>
+    :root{
+      --bg:#0b0f1a;
+      --bg2:#0a1326;
+      --card: rgba(255,255,255,.05);
+      --border: rgba(255,255,255,.10);
+      --text:#eaf0ff;
+      --muted:#b7c4e3;
+      --shadow: 0 18px 60px rgba(0,0,0,.45);
+      --r: 18px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(900px 500px at 10% 10%, rgba(0,116,255,.25), transparent 60%),
+        radial-gradient(900px 500px at 90% 20%, rgba(255,0,153,.18), transparent 62%),
+        linear-gradient(160deg, var(--bg) 0%, var(--bg2) 100%);
+      overflow-x:hidden;
+    }
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:1100px;margin:0 auto;padding:18px}
+    /* Top bar */
+    .topbar{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:10px 4px 14px;
+    }
+    .brand{
+      font-weight:800;letter-spacing:.2px;font-size:22px;
+    }
+    .brand span{opacity:.9}
+    .nav{
+      display:flex;gap:18px;flex-wrap:wrap;
+      font-weight:600;font-size:14px;color:var(--muted);
+    }
+    .nav a{opacity:.9}
+    .nav a:hover{opacity:1;color:var(--text)}
+    /* Hero */
+    .hero{
+      border:1px solid var(--border);
+      border-radius: 22px;
+      overflow:hidden;
+      box-shadow: var(--shadow);
+      background: rgba(255,255,255,.03);
+    }
+    .hero-inner{
+      padding:34px;
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap:24px;
+      align-items:center;
+      background:
+        linear-gradient(90deg, rgba(0,86,255,.55) 0%, rgba(121,73,246,.30) 55%, rgba(255,0,153,.45) 100%);
+    }
+    @media (max-width: 900px){
+      .hero-inner{grid-template-columns:1fr}
+    }
+    .tagline{
+      font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+      color:rgba(255,255,255,.85);
+      margin:0 0 10px;
+      font-weight:700;
+    }
+    h1{
+      margin:0 0 10px;
+      font-size:44px;line-height:1.05;
+    }
+    h1 .wave{font-size:.8em}
+    .desc{
+      margin:0;
+      max-width:68ch;
+      color:rgba(255,255,255,.88);
+      line-height:1.65;
+      font-size:15px;
+    }
+    .actions{margin-top:18px;display:flex;gap:12px;flex-wrap:wrap}
+    .btn{
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(0,0,0,.18);
+      color:var(--text);
+      border-radius:999px;
+      padding:11px 16px;
+      font-weight:700;
+      font-size:14px;
+      cursor:pointer;
+      transition:.15s ease;
+      display:inline-flex;align-items:center;gap:8px;
+    }
+    .btn:hover{transform: translateY(-1px); background: rgba(0,0,0,.28)}
+    .btn.primary{
+      background: rgba(255,255,255,.18);
+      border-color: rgba(255,255,255,.30);
+      color:#0a0f1a;
+    }
+    .btn.primary:hover{background: rgba(255,255,255,.25)}
+    /* Photo circle */
+    .photo-wrap{
+      display:flex;flex-direction:column;align-items:center;gap:10px;
+      text-align:center;
+    }
+    .photo{
+      width:170px;height:170px;border-radius:999px;
+      border:4px solid rgba(255,255,255,.35);
+      background: rgba(0,0,0,.25);
+      overflow:hidden;
+      box-shadow: 0 16px 40px rgba(0,0,0,.35);
+      display:grid;place-items:center;
+    }
+    .photo img{width:100%;height:100%;object-fit:cover;display:block}
+    .where{
+      font-size:13px;
+      color:rgba(255,255,255,.85);
+      font-weight:700;
+    }
+
+    /* Sections */
+    .section{
+      margin-top:18px;
+      border:1px solid var(--border);
+      border-radius: 22px;
+      background: rgba(0,0,0,.25);
+      box-shadow: 0 10px 35px rgba(0,0,0,.25);
+      overflow:hidden;
+    }
+    .section .inner{padding:22px}
+    .section-title{
+      text-align:center;
+      margin:0;
+      font-size:30px;
+      letter-spacing:.2px;
+    }
+    .section-sub{
+      text-align:center;
+      color:var(--muted);
+      margin:6px 0 0;
+      font-size:13px;
+    }
+    .grid2{
+      margin-top:18px;
+      display:grid;gap:16px;
+      grid-template-columns: 1.25fr .75fr;
+      align-items:start;
+    }
+    @media (max-width: 900px){
+      .grid2{grid-template-columns:1fr}
+    }
+    .card{
+      border:1px solid var(--border);
+      border-radius: var(--r);
+      background: var(--card);
+      padding:16px;
+    }
+    .card h3{margin:0 0 10px}
+    .card p{margin:0;color:var(--muted);line-height:1.7;font-size:14px}
+    .info-row{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid rgba(255,255,255,.08);padding:10px 0}
+    .info-row:last-child{border-bottom:none}
+    .k{color:rgba(255,255,255,.75);font-weight:700;font-size:13px}
+    .v{color:var(--text);font-weight:700;font-size:13px;text-align:right}
+    .v a{color: #9cdcff}
+    /* Lists */
+    .items{display:grid;gap:10px}
+    .item{
+      display:flex;justify-content:space-between;align-items:center;gap:12px;
+      padding:14px;
+      border-radius: 16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      transition:.15s ease;
+    }
+    .item:hover{background: rgba(255,255,255,.08); transform: translateY(-1px)}
+    .it-title{margin:0;font-weight:800}
+    .it-sub{margin:4px 0 0;color:var(--muted);font-size:13px}
+    .chip{
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.20);
+      padding:7px 11px;
+      border-radius:999px;
+      color:rgba(255,255,255,.85);
+      font-weight:800;
+      font-size:12px;
+      white-space:nowrap;
+    }
+    footer{padding:18px 0 28px;text-align:center;color:rgba(255,255,255,.65);font-size:13px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">Gulzhan<span>.</span></div>
+      <nav class="nav">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#tasks">Tasks</a>
+        <a href="#presentations">Presentations</a>
+      </nav>
+    </div>
+
+    <section id="home" class="hero">
+      <div class="hero-inner">
+        <div>
+          <p class="tagline">PHYSICS STUDENT • FRONTEND LEARNER • DREAMER</p>
+          <h1>Hi, I’m Gulzhan <span class="wave">👋</span></h1>
+          <p class="desc">
+            I am a Scientific Physics student exploring HTML, CSS, JavaScript and building educational projects,
+            mini apps and beautiful presentations. On this site you can find information about me, my achievements,
+            certificates, projects and academic work.
+          </p>
+
+          <div class="actions">
+            <a class="btn primary" href="#portfolio">View Projects</a>
+            <a class="btn" href="#contact">Contact Me</a>
+          </div>
+        </div>
+
+        <div class="photo-wrap">
+          <div class="photo" title="Your photo">
+            <!-- 1) Осындағы сілтемеге фотоңды қой -->
+            <img src="YOUR_PHOTO_URL_HERE" alt="Gulzhan photo">
+          </div>
+          <div class="where">Currently: Riga, Latvia 🇱🇻</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="inner">
+        <h2 class="section-title">About Me</h2>
+        <p class="section-sub">A short introduction and my academic path</p>
+
+        <div class="grid2">
+          <div class="card">
+            <h3>Who am I?</h3>
+            <p>
+              My name is Gulzhan Abdizakirova. I am a student in Scientific Physics. I love science, programming, and
+              creating clean designs. I build educational websites, do coding tasks, and prepare presentations.
+              Right now I’m improving my skills in JavaScript, HTML/CSS, Java, and GitHub.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="info-row">
+              <div class="k">Name</div>
+              <div class="v">Gulzhan Abdizakirova</div>
+            </div>
+            <div class="info-row">
+              <div class="k">Major</div>
+              <div class="v">Scientific Physics</div>
+            </div>
+            <div class="info-row">
+              <div class="k">Email</div>
+              <div class="v"><a href="mailto:your-email@example.com">your-email@example.com</a></div>
+            </div>
+            <div class="info-row">
+              <div class="k">GitHub</div>
+              <div class="v"><a href="https://github.com/Gulzhan05" target="_blank" rel="noreferrer">Gulzhan05</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="portfolio" class="section">
+      <div class="inner">
+        <h2 class="section-title">Portfolio</h2>
+        <p class="section-sub">My websites and projects</p>
+
+        <div class="items" style="margin-top:16px;">
+          <a class="item" href="https://gulzhan05.github.io/Abdizakirova-Gulzhan/" target="_blank" rel="noreferrer">
+            <div>
+              <p class="it-title">Resume Website</p>
+              <p class="it-sub">My HTML resume published on GitHub Pages</p>
+            </div>
+            <span class="chip">Open</span>
+          </a>
+
+          <a class="item" href="https://github.com/Gulzhan05" target="_blank" rel="noreferrer">
+            <div>
+              <p class="it-title">GitHub Repositories</p>
+              <p class="it-sub">All my code, tasks, and projects</p>
+            </div>
+            <span class="chip">Open</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="tasks" class="section">
+      <div class="inner">
+        <h2 class="section-title">Tasks</h2>
+        <p class="section-sub">Homework, labs, and practice</p>
+
+        <div class="items" style="margin-top:16px;">
+          <a class="item" href="#" target="_blank" rel="noreferrer">
+            <div>
+              <p class="it-title">Task 1 — HTML practice</p>
+              <p class="it-sub">Put your task link here</p>
+            </div>
+            <span class="chip">Link</span>
+          </a>
+
+          <a class="item" href="#" target="_blank" rel="noreferrer">
+            <div>
+              <p class="it-title">Task 2 — JavaScript</p>
+              <p class="it-sub">Put your task link here</p>
+            </div>
+            <span class="chip">Link</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="presentations" class="section">
+      <div class="inner">
+        <h2 class="section-title">Presentations</h2>
+        <p class="section-sub">My PowerPoint / OneDrive presentations</p>
+
+        <div class="items" style="margin-top:16px;">
+          <a class="item" href="ONE_DRIVE_LINK_HERE" target="_blank" rel="noreferrer">
+            <div>
+              <p class="it-title">Certificates Presentation (PPT)</p>
+              <p class="it-sub">Replace ONE_DRIVE_LINK_HERE with your real link</p>
+            </div>
+            <span class="chip">Open</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="inner">
+        <h2 class="section-title">Contact</h2>
+        <p class="section-sub">Let’s connect</p>
+
+        <div class="items" style="margin-top:16px;">
+          <a class="item" href="mailto:your-email@example.com">
+            <div>
+              <p class="it-title">Email</p>
+              <p class="it-sub">your-email@example.com</p>
+            </div>
+            <span class="chip">Send</span>
+          </a>
+
+          <a class="item" href="https://github.com/Gulzhan05" target="_blank" rel="noreferrer">
+            <div>
+              <p class="it-title">GitHub</p>
+              <p class="it-sub">github.com/Gulzhan05</p>
+            </div>
+            <span class="chip">Open</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <footer>© <span id="y"></span> Gulzhan • Portfolio</footer>
+  </div>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
